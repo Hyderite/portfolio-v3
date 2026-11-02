@@ -79,7 +79,7 @@ jobs:
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
           GITHUB_ACTOR: ${{ github.actor }}
           TEMPS_API_KEY: ${{ secrets.TEMPS_API_KEY }} # Make sure to add your Temps API key
-          TEMPS_API_URL: https://console.hyderite.dev # Change this to the url of your Temps instance
+          TEMPS_API_URL: https://dash.hyderite.dev # Change this to the url of your Temps instance
           PROJECT_NAME: portfolio-v3 # Change this to your project name
         run: |
           set -euo pipefail
