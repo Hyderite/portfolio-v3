@@ -9,7 +9,7 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml* ./
 ENV NODE_ENV=development
 RUN pnpm install --frozen-lockfile
 COPY . .
-RUN pnpm prune --prod
+RUN pnpm install --prod --frozen-lockfile
 
 FROM base AS runner
 WORKDIR /app
