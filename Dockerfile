@@ -9,6 +9,7 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml* ./
 ENV NODE_ENV=development
 RUN pnpm install --frozen-lockfile
 COPY . .
+RUN pnpm prune --prod
 
 FROM base AS runner
 WORKDIR /app
@@ -19,8 +20,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certifi
  && chmod +x /usr/bin/caddy \
  && rm -rf /var/lib/apt/lists/*
 
+COPY --from=build /app .
 COPY Caddyfile .
 
 EXPOSE 8080
 
-CMD [ "caddy", "run", "--config", "Caddyfile", "--adapter", "caddyfile" ]
+CMD ["sh", "-c", "pnpm run start & caddy run --config Caddyfile --adapter caddyfile"]
