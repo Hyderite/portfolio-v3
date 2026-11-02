@@ -14,7 +14,7 @@ FROM base AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 
-COPY --from=build /prod-app .
+COPY --from=build /app .
 
 EXPOSE 8080
 
