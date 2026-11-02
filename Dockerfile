@@ -9,7 +9,6 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml* ./
 ENV NODE_ENV=development
 RUN pnpm install --frozen-lockfile
 COPY . .
-RUN pnpm --filter=$(node -e "console.log(require('./package.json').name)") --prod deploy /prod-app
 
 FROM base AS runner
 WORKDIR /app
